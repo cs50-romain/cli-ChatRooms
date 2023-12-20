@@ -1,0 +1,13 @@
+Client - Handles single client connections
+	- Reads and Writes Messages
+	- Has a net.conn to handle its own connection to server
+
+Broadcaster - Sends messages to client in the Room
+
+Room - Handles client connection within room
+	- unbuffered channel to queue up messages
+	- Each room has its own Broadcaster (which has the broadcast method).
+
+Main - Start listener and start accept clients
+
+Send a ping to a client - if no pong is received, close the client connection.
