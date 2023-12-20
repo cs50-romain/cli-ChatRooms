@@ -16,10 +16,10 @@ func handleConn(conn *net.Conn) {
 	var roomname string
 
 	var room *Room
-	fmt.Print("Enter your username: ")
-	_, err := fmt.Scan(&username)
-	fmt.Print("Enter a room name: ")
-	_, err = fmt.Scan(&roomname)
+	fmt.Fprint(*conn, "Enter your username: ")
+	_, err := fmt.Fscan(*conn, &username)
+	fmt.Fprint(*conn, "Enter a room name: ")
+	_, err = fmt.Fscan(*conn, &roomname)
 
 	if err != nil {
 		log.Print("[ERROR] Error creating user or room ->", err)

@@ -27,17 +27,14 @@ func (c *Client) WriteMessage() {
 		for _, msg := range <-c.Rcv {
 			fmt.Fprint(*c.conn, string(msg))
 		}
-		fmt.Println()
 	}
 }
 
 func (c *Client) ReadMessage() {
-	for {
-		input := bufio.NewScanner(*c.conn)
-		for input.Scan() {
-			fmt.Fprint(*c.conn, "> ")
-			// Send input.Text() to the room's broadcaster
-			c.room.Broadcaster.messages <- c.username + ": " + input.Text() + "\n"
-		}
+	input := bufio.NewScanner(*c.conn)
+	fmt.Fprint(*c.conn, "> ")
+	for input.Scan() {
+		// Send input.Text() to the room's broadcaster
+		c.room.Broadcaster.messages <- c.username + ": " + input.Text() + "\n" + "> "
 	}
 }

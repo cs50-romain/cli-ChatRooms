@@ -1,7 +1,5 @@
 package main
 
-import "fmt"
-
 var RoomList map[string]*Room
 
 type Broadcaster struct {
